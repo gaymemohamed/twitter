@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mime = require('mime');
 const multer = require('multer');
 const crypto = require('crypto');
 const UserController = require("../controllers/user-controller");
