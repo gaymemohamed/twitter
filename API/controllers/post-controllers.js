@@ -9,14 +9,14 @@ exports.createPost = async (req, res, next) => {
         const userId = req.params.userId;
         const post = new Post({
             description: req.body.description,
-            user: userId,
+            userId: userId,
             img: req.body.img
         })
         let postDetail = await Post.create(post);
         return res.status(201).json({
             post: {
                 id: postDetail.id,
-                user: userId,
+                userId: userId,
                 description: postDetail.description,
                 img: postDetail.img
             }
@@ -60,3 +60,32 @@ exports.getOnePost = async (req, res, next) => {
     } 
 };
 // Update post
+exports.updatePost = async (req , res , next)=>{
+        try{
+            const postId = req.params.postId;
+            const userId = req.params.userId;
+            let post = await Post.findById(postId);
+            if(!post){
+                return res.status(404).end();
+            }
+            let updatePost = await Post.findByIdAndUpdate(postId , req.body , {new : true}).select("id description user");
+            return res.status(200).json(updatePost);
+        }
+        catch(err){
+            next(err);
+        }
+};
+
+// delete Post
+exports.deletePost = async (req , res , next)=>{
+    const postId = req.params.postId;
+    const userId = req.params.userId;
+    let post = await Post.findById(postId);
+    if(!post){
+        return res.status(404).end();
+    }
+    let deletePost = await Post.findByIdAndDelete(postId);
+    return res.status(200).json({
+        message : "post deleted"
+    })
+};

@@ -38,4 +38,8 @@ router.post('/user/:userId/post', upload.single('img') ,PostController.createPos
 router.get('/user/:userId/posts' , checkAuth , PostController.getAllPosts);
 router.get('/user/:userId/posts/:postId', checkAuth , PostController.getOnePost);
 
+router.put("/user/:userId/posts/:postId", checkAuth , PostController.updatePost);
+
+router.delete("/user/:userId/posts/:postId" , PostController.deletePost);
+
 module.exports = router;
