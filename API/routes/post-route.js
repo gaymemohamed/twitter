@@ -3,6 +3,7 @@ const router = express.Router();
 const mime = require('mime');
 const multer = require('multer');
 const crypto = require('crypto');
+const PostController = require("../controllers/post-controllers");
 const UserController = require("../controllers/user-controller");
 const checkAuth = require('../middelware/checkAuth');
 
@@ -31,9 +32,9 @@ const upload = multer({
     //fileFilter: fileFilter
 });
 
-router.post("/signup", upload.single('img'), UserController.user_signup);
 
-router.post("/login"  , UserController.user_login);
+router.post('/user/:userId/post', upload.single('img') ,PostController.createPost);
 
+router.get('/user/:userId/posts' , checkAuth , PostController.getAllPosts);
 
 module.exports = router;
