@@ -36,5 +36,6 @@ const upload = multer({
 router.post('/user/:userId/post', upload.single('img') ,PostController.createPost);
 
 router.get('/user/:userId/posts' , checkAuth , PostController.getAllPosts);
+router.get('/user/:userId/posts/:postId', checkAuth , PostController.getOnePost);
 
 module.exports = router;
