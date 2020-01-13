@@ -13,10 +13,7 @@ const postSchema = mongoose.Schema({
         type : String
         ,required: false
     },
-    likeCount:{
-        type : Number,
-        default:0
-    },
+    
     creationDate : {
         type: Date,
         default: new Date

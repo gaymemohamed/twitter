@@ -39,10 +39,10 @@ exports.getAllPosts = async (req, res, next) => {
         const page = req.query.page ? parseInt(req.query.page) : 1;
 
         const userId = req.userData.userId;
-        let posts = await Post.find({user : userId})
+        let posts = await Post.find({})
             .skip((page - 1) * pagination)
             .limit(pagination)
-            .select("description id likeCount")
+            .select("description id ")
             .sort({ creationDate: -1 })
             .populate('user', "name email img id");
         return res.status(200).json({ posts });
@@ -58,7 +58,7 @@ exports.getOnePost = async (req, res, next) => {
         const postId = req.params.postId;
         const userId = req.userData.userId;
         let singlePost = await Post.findById(postId)
-            .select("description id likeCount")
+            .select("description id ")
             .sort({ creationDate: -1 })
             .populate('user', "name email img id");
         return res.status(200).json({
