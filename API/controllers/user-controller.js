@@ -20,6 +20,11 @@ exports.user_signup = async (req, res, next) => {
                 password: req.body.password,
                 img: req.body.img,
             })
+            if(user.name === "" || user.email === "" || user.phone === "" || user.password === "" || user.img === "" ){
+                return res.status(400).json({
+                    message : "you should enter all properties of sign up"
+                })
+            }
             let createUser = await User.create(user);
             return res.status(201).json({
                 User: {
@@ -52,13 +57,18 @@ exports.user_login = async (req, res, next) => {
             const token = jwt.sign(
                 {
                     email: user.email,
-                    userId: user._id,
+                    userId: user.id,
                 },
                 'secret',
                 {
                     expiresIn: "4380h"
                 }
             );
+            if(user.email === "" || user.password === ""){
+                res.status(400).json({
+                    message : "email or password didn't entered"
+                })
+            }
             return res.status(200).send({
                 message: "Auth successful",
                 token: token,

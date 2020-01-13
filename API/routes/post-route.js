@@ -33,13 +33,13 @@ const upload = multer({
 });
 
 
-router.post('/user/:userId/post', upload.single('img') ,PostController.createPost);
+router.post('/api/post', checkAuth, upload.single('img') ,PostController.createPost);
 
-router.get('/user/:userId/posts' , checkAuth , PostController.getAllPosts);
-router.get('/user/:userId/posts/:postId', checkAuth , PostController.getOnePost);
+router.get('/api/posts' , checkAuth , PostController.getAllPosts);
+router.get('/api/:postId', checkAuth , PostController.getOnePost);
 
-router.put("/user/:userId/posts/:postId", checkAuth , PostController.updatePost);
+router.put("/api/post/:postId", checkAuth , PostController.updatePost);
 
-router.delete("/user/:userId/posts/:postId" , PostController.deletePost);
+router.delete("/api/post/:postId" , PostController.deletePost);
 
 module.exports = router;
