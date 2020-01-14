@@ -5,6 +5,8 @@ const PostController = require("../controllers/post-controllers");
 const UserController = require("../controllers/user-controller");
 const LikeController = require("../controllers/likePost-controller");
 
-router.post("/api/post/:postId/like", checkAuth , LikeController.createLike);
+router.post("/api/post/:postId/like", checkAuth, LikeController.createLike);
+
+// router.get("/api/post/:postId/userslike" , LikeController.getUsersLike);
 
 module.exports = router;

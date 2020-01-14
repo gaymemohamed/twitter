@@ -1,32 +1,32 @@
-const mongoose = require ("mongoose");
+const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    name:{
-        type : String,
-        required : true
+    name: {
+        type: String,
+        required: true
     },
-    phone : {
-        type : String,
+    phone: {
+        type: String,
         unique: true,
-        match :/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+        match: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
     },
-    type : {
+    type: {
         type: String,
         default: "NORMAL"
     },
-    email : {
+    email: {
         type: String,
         unique: true,
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
-    password : {
-        type : String,
-        required : true
+    password: {
+        type: String,
+        required: true
     },
-    img : {
-        type : String,
+    img: {
+        type: String,
         default: "https://icon-icons.com/icons2/582/PNG/512/worker_icon-icons.com_55029.png"
-    }, 
+    },
     creationDate: {
         type: Date,
         default: new Date
@@ -34,10 +34,10 @@ const userSchema = mongoose.Schema({
 
 });
 userSchema.set('toJSON', {
-    transform: function(doc, ret, options) {
-      ret.id = ret._id;
-      delete ret._id;
-      delete ret.__v;
+    transform: function (doc, ret, options) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
     }
-  });
+});
 module.exports = mongoose.model('user', userSchema);

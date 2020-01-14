@@ -33,7 +33,7 @@ const upload = multer({
 
 router.post("/signup", upload.single('img'), UserController.user_signup);
 
-router.post("/login"  , UserController.user_login);
+router.post("/login", UserController.user_login);
 
 
 module.exports = router;

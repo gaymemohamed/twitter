@@ -20,9 +20,9 @@ exports.user_signup = async (req, res, next) => {
                 password: req.body.password,
                 img: req.body.img,
             })
-            if(user.name === "" || user.email === "" || user.phone === "" || user.password === "" || user.img === "" ){
+            if (user.name === "" || user.email === "" || user.phone === "" || user.password === "" || user.img === "") {
                 return res.status(400).json({
-                    message : "you should enter all properties of sign up"
+                    message: "you should enter all properties of sign up"
                 })
             }
             let createUser = await User.create(user);
@@ -64,9 +64,9 @@ exports.user_login = async (req, res, next) => {
                     expiresIn: "4380h"
                 }
             );
-            if(user.email === "" || user.password === ""){
+            if (user.email === "" || user.password === "") {
                 res.status(400).json({
-                    message : "email or password didn't entered"
+                    message: "email or password didn't entered"
                 })
             }
             return res.status(200).send({
@@ -77,7 +77,7 @@ exports.user_login = async (req, res, next) => {
                     email: user.email,
                     name: user.name,
                     phone: user.phone,
-                    
+
                 }
             });
         }

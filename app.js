@@ -8,13 +8,13 @@ const postRoutes = require("./API/routes/post-route");
 const likePostRoutes = require("./API/routes/likePost-route");
 
 mongoose.connect('mongodb://gayme:0108444641g@ds021026.mlab.com:21026/twitter', {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true,    
-        },
-        ()=> {
-            console.log("db is Running now ..");
-        })
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+},
+    () => {
+        console.log("db is Running now ..");
+    })
 
 
 
@@ -25,6 +25,6 @@ app.use(bodyParser.json());
 app.use(express.static("upload"));
 
 app.use('/', userRoutes);
-app.use('/', postRoutes); 
+app.use('/', postRoutes);
 app.use('/', likePostRoutes);
 module.exports = app;
